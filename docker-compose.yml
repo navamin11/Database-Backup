@@ -1,0 +1,83 @@
+networks:
+  db.network:
+    driver: bridge
+
+services:  
+  postgres:
+    image: postgres:alpine
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: pagila
+      PGDATA: /var/lib/postgresql/data
+      TZ: Asia/Bangkok   
+    ports:
+      - 15432:5432
+    volumes:
+      - /var/lib/postgresql/data
+      - ./db/pagila-schema.sql:/docker-entrypoint-initdb.d/1-pagila-schema.sql
+      - ./db/pagila-data.sql:/docker-entrypoint-initdb.d/2-pagila-data.sql
+    networks:
+      - db.network
+  
+  mysql:
+    image: mysql:8.0.23
+    container_name: mysql
+    restart: always
+    environment:
+      - TZ=Asia/Bangkok
+      - MYSQL_ROOT_PASSWORD=topsecret
+      - MYSQL_DATABASE=world
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=secret
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --bind-address=0.0.0.0
+      --transaction-isolation=READ-COMMITTED
+    ports:
+      - 13306:3306
+    volumes:
+      - /var/lib/mysql
+      - /var/log/mysql
+      - ./db/world.sql:/docker-entrypoint-initdb.d/world.sql
+    networks:
+      - db.network
+
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgadmin
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #     PGADMIN_CONFIG_SERVER_MODE: 'False'
+  #     TZ: Asia/Bangkok
+  #   ports:
+  #     - "5050:80"
+  #   depends_on:
+  #     - postgres
+  #   restart: on-failure
+  #   networks:
+  #     - db.network
+  
+  myserver:
+      image: alpine:latest
+      build:
+        dockerfile: Dockerfile
+        context: .
+        target: Dev
+      tty: true
+      container_name: myserver
+      environment:
+        - TZ=Asia/Bangkok
+      ports:
+        - 2222:22
+      depends_on:
+        - postgres
+        - mysql
+      restart: always
+      networks:
+        - db.network

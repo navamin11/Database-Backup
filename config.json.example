@@ -1,0 +1,74 @@
+{
+    "database": [
+        {
+            "driver":"postgres",
+            "host": "127.0.0.1",
+            "port": "15432",
+            "username": "postgres",
+            "password": "secret",
+            "schema": "public",
+            "dbName":"pagila",
+            "tables": [
+                {
+                    "select": "*",
+                    "tbName": "actor"                 
+                },
+                {
+                    "select": "*",
+                    "tbName": "address"                    
+                },
+                {
+                    "select": "*",
+                    "tbName": "category"                    
+                },
+                {
+                    "select": "*",
+                    "tbName": "city"                    
+                },
+                {
+                    "select": "*",
+                    "tbName": "country"                    
+                },
+                {
+                    "select": "*",
+                    "tbName": "customer"                    
+                },
+                {
+                    "select": "*",
+                    "tbName": "film"                    
+                },
+                {
+                    "select": "*",
+                    "tbName": "film_actor"                    
+                },
+                {
+                    "select": "*",
+                    "tbName": "film_category"                    
+                }
+            ]
+        },
+        {
+            "driver":"mysql",
+            "host": "127.0.0.1",
+            "port": "13306",
+            "username": "mysql",
+            "password": "secret",
+            "schema": "world",
+            "dbName":"world",
+            "tables": [
+                {
+                    "select": "*",
+                    "tbName": "city"                 
+                },
+                {
+                    "select": "*",
+                    "tbName": "country"                    
+                },
+                {
+                    "select": "*",
+                    "tbName": "countrylanguage"                    
+                }
+            ]
+        }     
+    ]
+}

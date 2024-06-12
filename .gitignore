@@ -1,0 +1,7 @@
+houseKeeping.sh
+*.json
+*.log
+bin/logs
+bin/*.zip
+bin/*.json
+bin/dbBackup*
