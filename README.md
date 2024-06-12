@@ -62,3 +62,8 @@ $ make rebuild-all
 
 > [!NOTE]
 > See detail to Makefile.
+
+### Launch an interactive shell session inside container and execute application
+```bash
+$ docker exec -it myserver ./dbBackup-v1.0.0
+```
