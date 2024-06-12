@@ -74,7 +74,7 @@ WORKDIR /home/support/bin
 RUN chmod 0755 dbBackup-v1.0.0
 
 # Runs the binary once the container starts
-CMD ./dbBackup-v1.0.0 && \
-    /usr/sbin/sshd -D
+# CMD ./dbBackup-v1.0.0 && \
+#     /usr/sbin/sshd -D
 
-# CMD /usr/sbin/sshd -D
+CMD /usr/sbin/sshd -D
