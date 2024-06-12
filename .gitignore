@@ -5,3 +5,4 @@ bin/logs
 bin/*.zip
 bin/*.json
 bin/dbBackup*
+.DS_Store
