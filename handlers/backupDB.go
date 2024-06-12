@@ -53,6 +53,13 @@ func BackupDB() {
 
 				go func(sqlStmt, TbName string, subdir *string) {
 					defer wg.Done()
+
+					defer func() {
+						if r := recover(); r != nil {
+							return
+						}
+					}()
+
 					rows, err := db.Query(sqlStmt)
 					if err != nil {
 						Logger.Sugar().Errorf("[%s] %s - %s", "X", sqlStmt, err)
@@ -93,6 +100,12 @@ func BackupDB() {
 				go func(sqlStmt, TbName string, subdir *string) {
 					defer wg.Done()
 
+					defer func() {
+						if r := recover(); r != nil {
+							return
+						}
+					}()
+
 					rows, err := db.Query(sqlStmt)
 					if err != nil {
 						Logger.Sugar().Errorf("[%s] %s - %s", "X", sqlStmt, err)
@@ -132,6 +145,12 @@ func BackupDB() {
 
 				go func(sqlStmt, TbName string, subdir *string) {
 					defer wg.Done()
+
+					defer func() {
+						if r := recover(); r != nil {
+							return
+						}
+					}()
 
 					rows, err := db.Query(sqlStmt)
 					if err != nil {
