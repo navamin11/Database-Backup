@@ -28,6 +28,9 @@ func LoadConfig() {
 	viper.SetConfigName("config") // name of config file (without extension)
 	viper.SetConfigType("json")   // REQUIRED if the config file does not have the extension in the name
 
+	Logger.Sugar().Infof("%s", "Backup Databases version 1.0.0")
+	Logger.Sugar().Infof("%s\n", "Copyright © 2024 By Mr.Navamin Sawasdee. All rights reserved.")
+
 	Logger.Sugar().Infof("%s", "-----------------------------------------------")
 	Logger.Sugar().Infof("%s", "JSON Config file")
 	Logger.Sugar().Infof("%s", "-----------------------------------------------")
