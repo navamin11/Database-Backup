@@ -1,4 +1,3 @@
-houseKeeping.sh
 *.json
 *.log
 bin/logs
