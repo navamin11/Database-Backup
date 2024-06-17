@@ -71,7 +71,8 @@ EXPOSE 22
 
 WORKDIR /home/support/bin
 
-RUN chmod 0755 dbBackup-v1.0.0
+RUN chmod 0755 dbBackup-v1.0.0 && \
+    chmod 0755 houseKeeping.sh
 
 # Runs the binary once the container starts
 # CMD ./dbBackup-v1.0.0 && \
